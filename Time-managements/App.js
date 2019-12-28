@@ -16,9 +16,8 @@ const worktext = document.querySelector("#worktext");
 const cmltext = document.querySelector("#complatetext");
 
 const todobody = document.querySelectorAll(".list-group")[0];
-//const workingbody = document.querySelectorall(".input-group mb-3")[1];
+const workingbody = document.querySelectorAll(".list-group")[1];
 //const complatebody = document.querySelectorall(".input-group mb-3")[2];
-console.log(todobody);
 
 
 eventlistener();
@@ -26,15 +25,26 @@ eventlistener();
 function eventlistener(){
 
     todoform.addEventListener("submit", addtodo);
+    workform.addEventListener("submit", addworking);
+
+}
+function addworking(e){
+    const pointer = "working";
+    const newworking = worktext.value.trim();
+    addtodoUI(newworking, pointer);
+    console.log(newworking);
+    e.preventDefault();
 }
 function addtodo(e){
+    const pointer = "todo";
     const newtodo = todotext.value.trim(); //trim clean space
-    addtodoUI(newtodo);
+    addtodoUI(newtodo, pointer);
     
     e.preventDefault();
 
 }
-function addtodoUI(newtodo){
+
+function addtodoUI(newtodo, pointer){
     const pdiv = document.createElement("div");
     const cdiv = document.createElement("div");
     const button = document.createElement("button");
@@ -82,10 +92,12 @@ function addtodoUI(newtodo){
     li.appendChild(ppdiv);
     input.appendChild(document.createTextNode(newtodo));
 
-    todobody.appendChild(li);
-
-    
-
+    if (pointer === "todo") {
+        todobody.appendChild(li);
+    }
+    else if (pointer === "working") {
+        workingbody.appendChild(li);
+    }
     console.log(todobody);
     
 }
