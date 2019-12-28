@@ -17,7 +17,7 @@ const cmltext = document.querySelector("#complatetext");
 
 const todobody = document.querySelectorAll(".list-group")[0];
 const workingbody = document.querySelectorAll(".list-group")[1];
-//const complatebody = document.querySelectorall(".input-group mb-3")[2];
+const complatebody = document.querySelectorAll(".list-group")[2];
 
 
 eventlistener();
@@ -26,13 +26,20 @@ function eventlistener(){
 
     todoform.addEventListener("submit", addtodo);
     workform.addEventListener("submit", addworking);
+    complateform.addEventListener("submit", addcomplate);
+
+}
+function addcomplate(e){
+    const pointer = "complate";
+    const newcomplate = cmltext.value.trim();
+    addtodoUI(newcomplate, pointer);
+    e.preventDefault();
 
 }
 function addworking(e){
     const pointer = "working";
     const newworking = worktext.value.trim();
     addtodoUI(newworking, pointer);
-    console.log(newworking);
     e.preventDefault();
 }
 function addtodo(e){
@@ -98,6 +105,9 @@ function addtodoUI(newtodo, pointer){
     else if (pointer === "working") {
         workingbody.appendChild(li);
     }
-    console.log(todobody);
+    else if (pointer === "complate")
+    {
+        complatebody.appendChild(li);
+    }
     
 }
