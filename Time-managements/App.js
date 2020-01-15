@@ -32,25 +32,68 @@ function eventlistener(){
 function addcomplate(e){
     const pointer = "complate";
     const newcomplate = cmltext.value.trim();
-    addtodoUI(newcomplate, pointer);
+    if(newcomplate === "")
+    {
+        showalert(pointer);
+    }
+    else
+    {
+        addtodoUI(newcomplate, pointer);
+    }
     e.preventDefault();
-
 }
+
 function addworking(e){
     const pointer = "working";
     const newworking = worktext.value.trim();
-    addtodoUI(newworking, pointer);
+    if(newworking === "")
+    {
+        showalert(pointer);
+    }
+    else
+    {
+        addtodoUI(newcomplate, pointer);
+    }
     e.preventDefault();
 }
 function addtodo(e){
     const pointer = "todo";
     const newtodo = todotext.value.trim(); //trim clean space
-    addtodoUI(newtodo, pointer);
+    
+    if(newtodo === "")
+    {
+        showalert(pointer);
+    }
+    else
+    {
+        addtodoUI(newtodo, pointer);
+    }
     
     e.preventDefault();
 
 }
+function showalert(pointer){
+    const alert = document.createElement("div");
+    alert.className = "alert alert-danger";
+    alert.textContent = "enter the task";
 
+    if(pointer === "complate")
+    {
+        complatebody.appendChild(alert);
+    }
+    else if(pointer === "todo")
+    {
+        todobody.appendChild(alert);
+    }
+    else if(pointer === "working" )
+    {
+        workingbody.appendChild(alert);
+    }
+    setTimeout(function(){
+        alert.remove();
+    }, 2000);
+
+}
 function addtodoUI(newtodo, pointer){
     const pdiv = document.createElement("div");
     const cdiv = document.createElement("div");
